@@ -19,21 +19,21 @@
         };
 
         function execute(){
-          var parsedStr = Hangul.disassemble(inputField.value).join('');
-          parsedStr = parsedStr.replace(/(.*[ㅏ-ㅣ]{1})([ㅏ-ㅣ]{1})([ㄱ-ㅎ]{1})(.*)/g, '$1$3$2$4').split('');
-          resultField.innerText = Hangul.assemble(parsedStr);
+          // var parsedStr = Hangul.disassemble(inputField.value).join('');
+          // parsedStr = parsedStr.replace(/(.*[ㅏ-ㅣ]{1})([ㅏ-ㅣ]{1})([ㄱ-ㅎ]{1})(.*)/g, '$1$3$2$4').split('');
+          // resultField.innerText = Hangul.assemble(parsedStr);
 
-          // var result = []
-          // var arr = Hangul.disassemble(inputField.value);
-          // for(var i = 0 ; i < arr.length ; i++ ){
-          //   if(arr[i-1] == 'ㅗ' && arr[i] == 'ㅏ') {
-          //     result.push(arr[i+1]);
-          //     result.push(arr[i]);
-          //     i++;
-          //   }
-          //   else result.push(arr[i]);
-          // }
-          // resultField.innerText = Hangul.assemble(result);
+          var result = []
+          var arr = Hangul.disassemble(inputField.value);
+          for(var i = 0 ; i < arr.length ; i++ ){
+            if(Hangul.isVowel(arr[i-1]) && Hangul.isVowel(arr[i])) {
+              result.push(arr[i+1]);
+              result.push(arr[i]);
+              i++;
+            }
+            else result.push(arr[i]);
+          }
+          resultField.innerText = Hangul.assemble(result);
         }
     </script>
 </body>
